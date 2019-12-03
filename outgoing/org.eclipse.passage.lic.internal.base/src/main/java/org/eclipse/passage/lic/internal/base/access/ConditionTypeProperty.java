@@ -10,12 +10,23 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-rootProject.name = "passage-spring"
-include(
-        "incoming:org.eclipse.passage.lic.api",
-        "incoming:org.eclipse.passage.lic.base",
-        "ps-access",
-        "ps-dev",
-	"outgoing:org.eclipse.passage.lic.internal.api",
-	"outgoing:org.eclipse.passage.lic.internal.base",
-	"spring-client")
+package org.eclipse.passage.lic.internal.base.access;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.passage.lic.base.LicensingProperties;
+
+public class ConditionTypeProperty {
+	private final String type;
+
+	public ConditionTypeProperty(String type) {
+		this.type = type;
+	}
+
+	public Map<String, Object> map() {
+		Map<String, Object> properties = new HashMap<>();
+		properties.put(LicensingProperties.LICENSING_CONDITION_TYPE_ID, type);
+		return properties;
+	}
+}
