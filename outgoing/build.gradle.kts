@@ -10,12 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-rootProject.name = "passage-spring"
-include(
-        "incoming:org.eclipse.passage.lic.api",
-        "incoming:org.eclipse.passage.lic.base",
-        "ps-access",
-        "ps-dev",
-	"outgoing:org.eclipse.passage.lic.internal.api",
-	"outgoing:org.eclipse.passage.lic.internal.base",
-	"spring-client")
+plugins {
+    java
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+}
