@@ -10,8 +10,6 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     java
     kotlin("jvm")
@@ -28,14 +26,18 @@ dependencies {
     implementation(project(":outgoing:org.eclipse.passage.lic.internal.base"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.springframework:spring-context:5.2.1.RELEASE")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+    testImplementation("org.springframework:spring-test:5.2.1.RELEASE")
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach{
+    kotlinOptions.jvmTarget = "1.8"
 }
 
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
