@@ -24,7 +24,10 @@ repositories {
 dependencies {
     implementation(project(":incoming:org.eclipse.passage.lic.api"))
     implementation(project(":incoming:org.eclipse.passage.lic.base"))
+    implementation(project(":outgoing:org.eclipse.passage.lic.internal.api"))
+    implementation(project(":outgoing:org.eclipse.passage.lic.internal.base"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.springframework:spring-context:5.2.1.RELEASE")
 }
 
 val compileKotlin: KotlinCompile by tasks
