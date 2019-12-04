@@ -19,8 +19,10 @@ import org.eclipse.passage.lic.internal.api.restrictions.RestrictionExecutorRegi
 import org.eclipse.passage.lic.base.access.BaseAccessManager
 import org.eclipse.passage.lic.internal.base.access.ConditionTypeProperty
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
 
+@Component
 class AccessManager @Autowired constructor(
         private val conditionMiners: ConditionMinerRegistry,
         private val permissionEmitters: PermissionEmitterRegistry,
