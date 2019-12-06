@@ -10,10 +10,8 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.spring.access
+package org.eclipse.passage.lic.spring.event
 
-import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.ApplicationListener
 
-@ComponentScan("org.eclipse.passage.lic.spring")
-open class TestConfig { // spring configuration cannot be final
-}
+interface Listener : ApplicationListener<AccessCycleEvent>

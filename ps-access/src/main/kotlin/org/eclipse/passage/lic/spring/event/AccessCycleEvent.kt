@@ -10,10 +10,16 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.spring.access
+package org.eclipse.passage.lic.spring.event
 
-import org.springframework.context.annotation.ComponentScan
+import org.eclipse.passage.lic.api.LicensingEvents
+import org.eclipse.passage.lic.api.LicensingResult
+import org.springframework.context.ApplicationEvent
 
-@ComponentScan("org.eclipse.passage.lic.spring")
-open class TestConfig { // spring configuration cannot be final
+class AccessCycleEvent(private val origin: LicensingResult) : ApplicationEvent(origin.source) {
+
+    fun topic() = origin.getAttachment(LicensingEvents.PROPERTY_TOPIC)
+
+    fun data() = origin.getAttachment(LicensingEvents.PROPERTY_DATA)
+
 }
