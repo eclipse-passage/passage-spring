@@ -18,21 +18,25 @@ import org.eclipse.passage.lic.internal.api.requirements.RequirementResolverRegi
 import org.eclipse.passage.lic.internal.api.restrictions.RestrictionExecutorRegistry
 import org.eclipse.passage.lic.base.access.BaseAccessManager
 import org.eclipse.passage.lic.internal.base.access.ConditionTypeProperty
+import org.eclipse.passage.lic.spring.event.Publisher
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Component
 
-
 @Component
+@Primary
 class AccessManager @Autowired constructor(
         private val conditionMiners: ConditionMinerRegistry,
         private val permissionEmitters: PermissionEmitterRegistry,
         private val requirementResolvers: RequirementResolverRegistry,
-        private val restrictionExecutors: RestrictionExecutorRegistry) : BaseAccessManager() {
+        private val restrictionExecutors: RestrictionExecutorRegistry,
+        private val eventPublisher: Publisher) : BaseAccessManager() {
     init {
         pullConditionMinerRegistry()
         pullPermissionEmitters()
         pullRequirementResolvers()
         pullRestrictionExecutors()
+        pullPublisher()
     }
 
     private fun pullConditionMinerRegistry() = super.bindConditionMinerRegistry(conditionMiners)
@@ -48,5 +52,7 @@ class AccessManager @Autowired constructor(
 
     private fun pullRestrictionExecutors() =
             restrictionExecutors.executors().forEach { super.bindRestrictionExecutor(it) }
+
+    private fun pullPublisher() = super.bindLicensingReporter(eventPublisher)
 
 }
