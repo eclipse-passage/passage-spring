@@ -10,21 +10,14 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-plugins {
-    java
-}
+package org.eclipse.passage.lic.spring.access.fakes
 
-repositories {
-    jcenter()
-}
+import org.eclipse.passage.lic.api.LicensingConfiguration
 
-dependencies {
-    implementation(project(":incoming:org.eclipse.passage.lic.api"))
-}
+data class FakeLicensingConfiguration(val product: String, val version: String) : LicensingConfiguration {
+    constructor() : this("HappyHalloween", "31.10.2019")
 
-// workaround for #557991 - [Passage] rework (facade) i18n machine in common passage bundles
-sourceSets.forEach{
-    it.resources{
-        srcDir(file("src/main/java"))
-    }
+    override fun getProductVersion() = version
+
+    override fun getProductIdentifier() = product
 }

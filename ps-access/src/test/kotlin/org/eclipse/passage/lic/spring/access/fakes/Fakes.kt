@@ -10,7 +10,7 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.spring.access
+package org.eclipse.passage.lic.spring.access.fakes
 
 import org.eclipse.passage.lic.api.LicensingConfiguration
 import org.eclipse.passage.lic.api.LicensingResult
