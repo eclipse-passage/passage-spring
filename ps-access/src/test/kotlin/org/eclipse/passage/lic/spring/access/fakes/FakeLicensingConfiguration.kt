@@ -14,10 +14,10 @@ package org.eclipse.passage.lic.spring.access.fakes
 
 import org.eclipse.passage.lic.api.LicensingConfiguration
 
-data class FakeLicensingConfiguration(val product: String, val version: String) : LicensingConfiguration {
-    constructor() : this("HappyHalloween", "31.10.2019")
+class FakeLicensingConfiguration : LicensingConfiguration {
 
-    override fun getProductVersion() = version
+    override fun getProductVersion() = "31.10.2019"
 
-    override fun getProductIdentifier() = product
+    override fun getProductIdentifier() = "HappyHalloween"
+
 }

@@ -38,9 +38,9 @@ class AccessManagerSmokeTest @Autowired constructor(private val accessManager: A
         assertEquals(
             1,
             requirements.count()
-        ) // a bit unexpected, yah? See #557992 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=557992) for details
+        )
         with(requirements.iterator().next()) {
-            assertEquals(featureIdentifier, FakeLicensingConfiguration().product)
+            assertEquals(featureIdentifier, FakeLicensingConfiguration().productIdentifier)
             //assertEquals(featureVersion, FakeLicensingConfiguration().version) ---  Uncomment when #557992 is up and running
             assertEquals(requirementSource, AccessManager::class.java.name)
         }

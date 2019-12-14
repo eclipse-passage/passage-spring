@@ -18,8 +18,8 @@ import org.springframework.context.ApplicationEvent
 
 class AccessCycleEvent(private val origin: LicensingResult) : ApplicationEvent(origin.source) {
 
-    fun topic() = origin.getAttachment(LicensingEvents.PROPERTY_TOPIC)
+    fun topic(): String = origin.getAttachment(LicensingEvents.PROPERTY_TOPIC) as String
 
-    fun data() = origin.getAttachment(LicensingEvents.PROPERTY_DATA)
+  fun data() = origin.getAttachment(LicensingEvents.PROPERTY_DATA)
 
 }
