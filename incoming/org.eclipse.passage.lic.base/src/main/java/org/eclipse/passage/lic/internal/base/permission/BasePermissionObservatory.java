@@ -17,32 +17,33 @@ import java.util.function.Consumer;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.passage.lic.api.access.FeaturePermission;
-import org.eclipse.passage.lic.internal.base.permission.observatory.GuardedObservatory;
+import org.eclipse.passage.lic.internal.base.permission.observatory.CheckSchedule;
+import org.eclipse.passage.lic.internal.base.permission.observatory.Observatory;
 
 /**
  * <p>
  * Base implementation for {@linkplain PermissionObservatory} component.
  * </p>
  * <p>
- * Covers {@linkplain GuardedObservatory} tuned for permission tracking and is
- * it's representation for the domain specific environment.
+ * Covers {@linkplain Observatory} tuned for permission tracking and is it's
+ * representation for the domain specific environment.
  * </p>
  * 
  * @since 0.6
  */
 public final class BasePermissionObservatory implements PermissionObservatory {
-	private final GuardedObservatory<LimitedPermission> observatory;
+	private final Observatory<LimitedPermission> observatory;
 
-	public BasePermissionObservatory(int seconds, Consumer<Set<LimitedPermission>> farewell) {
-		this.observatory = new GuardedObservatory<LimitedPermission>(seconds, farewell);
+	public BasePermissionObservatory(CheckSchedule schedule, Consumer<Set<LimitedPermission>> farewell) {
+		this.observatory = new Observatory<LimitedPermission>(schedule, farewell);
 	}
 
 	public void watch(Iterable<FeaturePermission> permissions) {
-		onEachPermission(permissions, limited -> observatory.watch(limited));
+		onEachPermission(permissions, observatory::watch);
 	}
 
 	public void forget(Iterable<FeaturePermission> permissions) {
-		onEachPermission(permissions, limited -> observatory.forget(limited));
+		onEachPermission(permissions, observatory::forget);
 	}
 
 	public void open() {
@@ -52,7 +53,7 @@ public final class BasePermissionObservatory implements PermissionObservatory {
 	private void onEachPermission(Iterable<FeaturePermission> permissions, Consumer<LimitedPermission> action) {
 		StreamSupport.stream(permissions.spliterator(), false)//
 				.map(LimitedPermission::new) //
-				.forEach(limited -> action.accept(limited));
+				.forEach(action::accept);
 	}
 
 }
