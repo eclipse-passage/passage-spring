@@ -19,4 +19,5 @@ class FakeLicensingConfiguration : LicensingConfiguration {
     override fun getProductVersion() = "31.10.2019"
 
     override fun getProductIdentifier() = "HappyHalloween"
+
 }

@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component
 @Primary
 class Publisher @Autowired constructor(private val publisher: ApplicationEventPublisher) : LicensingReporter {
     //val logger: Logger TODO: #553877
+
     @Async
     override fun postResult(result: LicensingResult) {
         sendResult(result)

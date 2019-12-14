@@ -20,6 +20,6 @@ class AccessCycleEvent(private val origin: LicensingResult) : ApplicationEvent(o
 
     fun topic(): String = origin.getAttachment(LicensingEvents.PROPERTY_TOPIC) as String
 
-    fun data() = origin.getAttachment(LicensingEvents.PROPERTY_DATA)
+  fun data() = origin.getAttachment(LicensingEvents.PROPERTY_DATA)
 
 }
