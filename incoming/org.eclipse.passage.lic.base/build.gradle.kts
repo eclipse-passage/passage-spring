@@ -21,3 +21,10 @@ repositories {
 dependencies {
     implementation(project(":incoming:org.eclipse.passage.lic.api"))
 }
+
+// workaround for #557991 - [Passage] rework (facade) i18n machine in common passage bundles
+sourceSets.forEach{
+    it.resources{
+        srcDir(file("src/main/java"))
+    }
+}
