@@ -10,10 +10,13 @@
  * Contributors:
  *     ArSysOp - initial API and implementation
  *******************************************************************************/
-package org.eclipse.passage.lic.spring.access
+package org.eclipse.passage.lic.spring.access.fakes
 
-import org.springframework.context.annotation.ComponentScan
+import org.eclipse.passage.lic.api.LicensingConfiguration
 
-@ComponentScan("org.eclipse.passage.lic.spring")
-open class TestConfig { // spring configuration cannot be final
+class FakeLicensingConfiguration : LicensingConfiguration {
+
+    override fun getProductVersion() = "31.10.2019"
+
+    override fun getProductIdentifier() = "HappyHalloween"
 }
