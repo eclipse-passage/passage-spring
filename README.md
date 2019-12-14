@@ -2,7 +2,7 @@
 
 The Eclipse Passage for Spring
      
-![actions](https://action-badges.now.sh/JasonEtco/action-badges)
+[![Build](https://github.com/eclipse/passage-spring/workflows/Java%20CI/badge.svg)](https://github.com/eclipse/passage-spring/actions?query=workflow%3A%22Java+CI%22)
 
 [![Eclipse License](https://img.shields.io/badge/license-EPL--2.0-brightgreen.svg)](https://github.com/eclipse/passage-spring/blob/master/LICENSE)
 
